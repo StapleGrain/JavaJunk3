@@ -2,9 +2,10 @@ package linkedlist;
 
 import java.util.NoSuchElementException;
 
-/* Name: Elena Peot
- * Netid: ekp38
+/* Name: Elena Peot, Christopher M. Donohue
+ * Netid: ekp38, cmd298
  * What I thought about this assignment:
+ * It was lame, bro!
 
  *
  *
