@@ -100,11 +100,18 @@ public class DList<E> {
         // should be like that one except it processes elements in reverse order.
         // You can't do much testing of it until you have completed method append.
         // Test the two of them together, in one testing procedure.
-
-        throw new UnsupportedOperationException();
+        StringBuilder sb= new StringBuilder("[");
+        Node n= tail;
+        while (n != null) {
+            sb.append(n.value);
+            n= n.prev;
+            if (n != null) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
-    /** add value v to the end of the list. <br>
+    /** e: add value v to the end of the list. <br>
      * This operation takes constant time. */
     public void append(E v) {
         // TODO 2. After writing this method, test this method and method toStringR
@@ -115,14 +122,14 @@ public class DList<E> {
 
     }
 
-    /** Add value v to the front of the list. <br>
+    /** c: Add value v to the front of the list. <br>
      * This operation takes constant time. */
     public void prepend(E v) {
         // TODO 3. Write and test this method before moving on to method getNode.
         throw new UnsupportedOperationException();
     }
 
-    /** Return node number h: If h is 0, return first node;<br>
+    /** c: Return node number h: If h is 0, return first node;<br>
      * if h = 1, return second node, etc.<br>
      * Throw an IllegalArgumentException if h <0 or h >= size of list */
     protected Node getNode(int h) {
@@ -138,7 +145,7 @@ public class DList<E> {
         throw new UnsupportedOperationException();
     }
 
-    /** Delete node n from this list. <br>
+    /** e: Delete node n from this list. <br>
      * This operation must take constant time.<br>
      * Precondition: n must be a node of this list; it may not be null. */
     public void delete(Node n) {
@@ -147,7 +154,7 @@ public class DList<E> {
         throw new UnsupportedOperationException();
     }
 
-    /** Insert value v in a new node after node n.<br>
+    /** c: Insert value v in a new node after node n.<br>
      * This operation takes constant time.<br>
      * Precondition: n must be a node of this list; it may not be null. */
     public void insertAfter(E v, Node n) {
