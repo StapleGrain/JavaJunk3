@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 /* Name: Elena Peot, Christopher M. Donohue
  * Netid: ekp38, cmd298
  * What I thought about this assignment:
- * It was lame, bro!
+ * It was lame, bro! Very simple, I thought.
 
  *
  *
@@ -158,22 +158,19 @@ public class DList<E> {
         // TODO 5. Make sure this method takes constant time.
         Node a= n.prev;
         Node b= n.next;
-        if (size == 1) {
-            head= a;
-            tail= b;
-        } else if (n == tail) {
-            a.next= b;
-            tail= a;
-        } else if (n == head) {
-            b.prev= a;
-            head= b;
-        } else {
-            a.next= b;
-            b.prev= a;
-        }
         n.next= null;
         n.prev= null;
         size-= 1;
+        if (n == tail) {
+            tail= a;
+        } else {
+            b.prev= a;
+        }
+        if (n == head) {
+            head= b;
+        } else {
+            a.next= b;
+        }
     }
 
     /** c: Insert value v in a new node after node n.<br>
