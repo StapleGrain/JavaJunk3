@@ -10,6 +10,10 @@ class DListTest {
     // tests toStringR and append
     void test1and2() {
         // cases to test
+        // a = new DList();
+        // assertEquals("[]", a.toStringR());
+        // a.append(
+        // assertEquals(
         fail("Not yet implemented");
     }
 
