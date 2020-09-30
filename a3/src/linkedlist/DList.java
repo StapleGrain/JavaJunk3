@@ -117,9 +117,14 @@ public class DList<E> {
         // TODO 2. After writing this method, test this method and method toStringR
         // thoroughly before starting on the next method. These two methods must be
         // correct in order to be able to write and test all the others.
-
-        throw new UnsupportedOperationException();
-
+        Node n= new Node(tail, v, null);
+        if (tail == null) {
+            head= n;
+        } else {
+            tail.next= n;
+        }
+        tail= n;
+        size+= 1;
     }
 
     /** c: Add value v to the front of the list. <br>
@@ -150,8 +155,24 @@ public class DList<E> {
      * Precondition: n must be a node of this list; it may not be null. */
     public void delete(Node n) {
         // TODO 5. Make sure this method takes constant time.
-
-        throw new UnsupportedOperationException();
+        Node a= n.prev;
+        Node b= n.next;
+        if (size == 1) {
+            head= a;
+            tail= b;
+        } else if (n == tail) {
+            a.next= b;
+            tail= a;
+        } else if (n == head) {
+            b.prev= a;
+            head= b;
+        } else {
+            a.next= b;
+            b.prev= a;
+        }
+        n.next= null;
+        n.prev= null;
+        size-= 1;
     }
 
     /** c: Insert value v in a new node after node n.<br>
