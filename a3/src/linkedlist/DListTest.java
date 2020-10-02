@@ -25,16 +25,44 @@ class DListTest {
         assertEquals(2, a.size());
     }
 
-    // @Test
+    @Test
     // tests prepend
     void testprepend() {
-        fail("Not yet implemented");
+    	DList<Object> d= new DList<>();
+    	assertEquals(null,d.firstNode());
+    	assertEquals(null,d.lastNode());
+    	assertEquals(0,d.size());
+    	d.prepend(7);
+    	assertEquals(7,d.first());
+    	assertEquals(null,d.firstNode().pred());
+    	assertEquals(null,d.firstNode().succ());
+    	assertEquals(7,d.firstNode().value());
+    	d.prepend(8);
+    	d.prepend(9);
+    	d.prepend(10);
+    	assertEquals(10,d.first());
+    	assertEquals(null,d.firstNode().pred());
+    	assertEquals(9,d.firstNode().succ().value());
+    	
+    	assertEquals(10,d.firstNode().succ().pred().value());
+    	assertEquals(8,d.firstNode().succ().succ().value());
+    	
     }
 
-    // @Test
+    @Test
     // tests getNode
     void testgetNode() {
-        fail("Not yet implemented");
+    	DList<Object> d= new DList<>();
+    	for(int i=9;i>-1;i--) {
+    		d.prepend(i);
+    	}
+    	d.getNode(3).value();
+    	System.out.println(d.toString());
+    	
+    	System.out.println(d.getNode(3).value());
+    	assertEquals(0,d.getNode(0).value());
+    	assertEquals(8,d.getNode(8).value());
+    	
     }
 
     @Test
@@ -71,9 +99,17 @@ class DListTest {
         assertEquals(0, d.size());
     }
 
-    // @Test
+    @Test
     // tests insertAfter
     void testinsertAfter() {
-        fail("Not yet implemented");
+    	DList<Object> d= new DList<>();
+    	for(int i=9;i>-1;i--) {
+    		d.prepend(i);
+    	}
+    	
+    	d.insertAfter(10,d.lastNode());
+    	assertEquals(10,d.last());
+    	assertEquals(null,d.lastNode().succ());
+    	assertEquals(9,d.lastNode().pred().value());
     }
 }

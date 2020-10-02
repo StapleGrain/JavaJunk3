@@ -135,6 +135,7 @@ public class DList<E> {
         Node n=new Node(null,v,head);
     	if (head==null) {
     		head=n;
+    		tail=n;
     	}
     	else {
     		head.prev=n;
@@ -156,14 +157,26 @@ public class DList<E> {
         // One thing you can do in your testing program is to create a list with
         // 20 elements --use a loop to fill them with values. Then, write another
         // loop to test getNode(0) through getNode(19) all work properly.
-        if (h<0||h>=size) {
+        
+    	if (h<0||h>=size) {
         	throw new IllegalArgumentException("h needs to be between 0 and size-1)");
         }
-        Node n=head;
-        for (int i=0;i<h;i++) {
-        	n=n.next;
+        if (h<=size-h) {
+        	Node n=head;
+            for (int i=0;i<h;i++) {
+            	n=n.next;
+            }
+            return n;
         }
-        return n;
+        else {
+        	Node n=tail;
+        	for (int i=size-1;i>h;i--) {
+        		n=n.prev;
+        	}
+        	return n;
+        }
+        
+		
     }
 
     /** e: Delete node n from this list. <br>
@@ -203,6 +216,7 @@ public class DList<E> {
     	else {
     		nxt.prev=nw;
     	}
+    	size++;
     	
     }
 
