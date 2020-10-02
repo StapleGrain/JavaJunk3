@@ -30,23 +30,43 @@ class DListTest {
     // tests prepend
     void testprepend() {
     	DList<Object> d= new DList<>();
-    	assertEquals(null,d.firstNode());
-    	assertEquals(null,d.lastNode());
-    	assertEquals(0,d.size());
-    	d.prepend(7);
-    	assertEquals(7,d.first());
-    	assertEquals(null,d.firstNode().pred());
-    	assertEquals(null,d.firstNode().succ());
-    	assertEquals(7,d.firstNode().value());
-    	d.prepend(8);
-    	d.prepend(9);
-    	d.prepend(10);
-    	assertEquals(10,d.first());
-    	assertEquals(null,d.firstNode().pred());
-    	assertEquals(9,d.firstNode().succ().value());
+    	assertEquals("[]", d.toString());
+        assertEquals("[]", d.toStringR());
+        assertEquals(0, d.size());
     	
-    	assertEquals(10,d.firstNode().succ().pred().value());
-    	assertEquals(8,d.firstNode().succ().succ().value());
+        d.prepend(7);
+        assertEquals("[7]",d.toString());
+        assertEquals("[7]",d.toStringR());
+        assertEquals(1,d.size());
+        
+        d.prepend(77);
+        assertEquals("[77, 7]",d.toString());
+        assertEquals("[7, 77]",d.toStringR());
+        assertEquals(2,d.size());
+        
+        d.prepend("yo mama!");
+        assertEquals("[yo mama!, 77, 7]",d.toString());
+        assertEquals("[7, 77, yo mama!]",d.toStringR());
+        assertEquals(3,d.size());
+        
+    	//my old tests
+//    	assertEquals(null,d.firstNode());
+//    	assertEquals(null,d.lastNode());
+//    	assertEquals(0,d.size());
+//    	d.prepend(7);
+//    	assertEquals(7,d.first());
+//    	assertEquals(null,d.firstNode().pred());
+//    	assertEquals(null,d.firstNode().succ());
+//    	assertEquals(7,d.firstNode().value());
+//    	d.prepend(8);
+//    	d.prepend(9);
+//    	d.prepend(10);
+//    	assertEquals(10,d.first());
+//    	assertEquals(null,d.firstNode().pred());
+//    	assertEquals(9,d.firstNode().succ().value());
+//    	
+//    	assertEquals(10,d.firstNode().succ().pred().value());
+//    	assertEquals(8,d.firstNode().succ().succ().value());
     	
     }
 
@@ -58,11 +78,17 @@ class DListTest {
     	for(int i=9;i>-1;i--) {
     		d.prepend(i);
     	}
-    	assertThrows(IllegalArgumentException.class, () -> {d.getNode(-1);});
-    	d.getNode(3).value();
-    	System.out.println(d.toString());
+    	assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",d.toString());
     	
-    	System.out.println(d.getNode(3).value());
+    	assertThrows(IllegalArgumentException.class, () -> {d.getNode(-1);});
+    	assertThrows(IllegalArgumentException.class, () -> {d.getNode(10);});
+    	assertThrows(IllegalArgumentException.class, () -> {d.getNode(77);});
+    	DList<Object> d2= new DList<>();
+    	assertThrows(IllegalArgumentException.class, () -> {d2.getNode(0);});
+    	
+    	//HOW DO I USE toString to test this??
+    	//Do I need to test that it's done it that particular time?
+
     	assertEquals(0,d.getNode(0).value());
     	assertEquals(8,d.getNode(8).value());
     	
@@ -111,8 +137,23 @@ class DListTest {
     	}
     	
     	d.insertAfter(10,d.lastNode());
-    	assertEquals(10,d.last());
-    	assertEquals(null,d.lastNode().succ());
-    	assertEquals(9,d.lastNode().pred().value());
+    	assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",d.toString());
+    	assertEquals("[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]", d.toStringR());
+    	assertEquals(11,d.size());
+    	
+    	d.insertAfter("7 is the best", d.getNode(7));
+    	assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 7 is the best, 8, 9, 10]", d.toString());
+    	assertEquals("[10, 9, 8, 7 is the best, 7, 6, 5, 4, 3, 2, 1, 0]",d.toStringR());
+    	assertEquals(12,d.size());
+    	
+    	DList<Object> d2= new DList<>();
+    	assertThrows(AssertionError.class, () -> d2.insertAfter(2, d2.firstNode()));
+    	
+    	
+    	
+    	//Original testing
+//    	assertEquals(10,d.last());
+//    	assertEquals(null,d.lastNode().succ());
+//    	assertEquals(9,d.lastNode().pred().value());
     }
 }
