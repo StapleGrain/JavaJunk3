@@ -1,5 +1,6 @@
 package linkedlist;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -52,10 +53,12 @@ class DListTest {
     @Test
     // tests getNode
     void testgetNode() {
+    	
     	DList<Object> d= new DList<>();
     	for(int i=9;i>-1;i--) {
     		d.prepend(i);
     	}
+    	assertThrows(IllegalArgumentException.class, () -> {d.getNode(-1);});
     	d.getNode(3).value();
     	System.out.println(d.toString());
     	
