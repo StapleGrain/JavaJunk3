@@ -132,7 +132,15 @@ public class DList<E> {
      * This operation takes constant time. */
     public void prepend(E v) {
         // TODO 3. Write and test this method before moving on to method getNode.
-        throw new UnsupportedOperationException();
+        Node n=new Node(null,v,head);
+    	if (head==null) {
+    		head=n;
+    	}
+    	else {
+    		head.prev=n;
+    		head=n;
+    	}
+    	size++;
     }
 
     /** c: Return node number h: If h is 0, return first node;<br>
@@ -148,7 +156,14 @@ public class DList<E> {
         // One thing you can do in your testing program is to create a list with
         // 20 elements --use a loop to fill them with values. Then, write another
         // loop to test getNode(0) through getNode(19) all work properly.
-        throw new UnsupportedOperationException();
+        if (h<0||h>=size) {
+        	throw new IllegalArgumentException("h needs to be between 0 and size-1)");
+        }
+        Node n=head;
+        for (int i=0;i<h;i++) {
+        	n=n.next;
+        }
+        return n;
     }
 
     /** e: Delete node n from this list. <br>
@@ -178,8 +193,17 @@ public class DList<E> {
      * Precondition: n must be a node of this list; it may not be null. */
     public void insertAfter(E v, Node n) {
         // TODO 6. Make sure this method takes constant time.
-
-        throw new UnsupportedOperationException();
+    	assert(n!=null);
+    	Node nxt=n.next;
+    	Node nw=new Node(n,v,nxt);
+    	n.next=nw;
+    	if (n==tail) {
+    		tail=nw;
+    	}
+    	else {
+    		nxt.prev=nw;
+    	}
+    	
     }
 
     /*********************/
