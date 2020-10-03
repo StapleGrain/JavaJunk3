@@ -48,26 +48,6 @@ class DListTest {
         assertEquals("[yo mama!, 77, 7]",d.toString());
         assertEquals("[7, 77, yo mama!]",d.toStringR());
         assertEquals(3,d.size());
-        
-    	//my old tests
-//    	assertEquals(null,d.firstNode());
-//    	assertEquals(null,d.lastNode());
-//    	assertEquals(0,d.size());
-//    	d.prepend(7);
-//    	assertEquals(7,d.first());
-//    	assertEquals(null,d.firstNode().pred());
-//    	assertEquals(null,d.firstNode().succ());
-//    	assertEquals(7,d.firstNode().value());
-//    	d.prepend(8);
-//    	d.prepend(9);
-//    	d.prepend(10);
-//    	assertEquals(10,d.first());
-//    	assertEquals(null,d.firstNode().pred());
-//    	assertEquals(9,d.firstNode().succ().value());
-//    	
-//    	assertEquals(10,d.firstNode().succ().pred().value());
-//    	assertEquals(8,d.firstNode().succ().succ().value());
-    	
     }
 
     @Test
@@ -91,6 +71,11 @@ class DListTest {
 
     	assertEquals(0,d.getNode(0).value());
     	assertEquals(8,d.getNode(8).value());
+    	assertEquals(6,d.getNode(7).pred().value());
+    	assertEquals(8,d.getNode(7).succ().value());
+    	
+    	assertEquals(null,d.getNode(0).pred());
+    	assertEquals(null,d.getNode(9).succ());
     	
     }
 
@@ -148,12 +133,5 @@ class DListTest {
     	
     	DList<Object> d2= new DList<>();
     	assertThrows(AssertionError.class, () -> d2.insertAfter(2, d2.firstNode()));
-    	
-    	
-    	
-    	//Original testing
-//    	assertEquals(10,d.last());
-//    	assertEquals(null,d.lastNode().succ());
-//    	assertEquals(9,d.lastNode().pred().value());
     }
 }

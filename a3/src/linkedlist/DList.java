@@ -5,8 +5,7 @@ import java.util.NoSuchElementException;
 /* Name: Elena Peot, Christopher M. Donohue
  * Netid: ekp38, cmd298
  * What I thought about this assignment:
- * It was lame, bro! Very simple, I thought.
-
+ * Very simple, I thought. Testing was more difficult than the coding. :(
  *
  *
  */
@@ -18,7 +17,7 @@ public class DList<E> {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= -1;
+    public static double timeSpent= 2.79;
 
     /** First node of linked list (null if size is 0) */
     private Node head;
@@ -125,7 +124,7 @@ public class DList<E> {
             tail.next= n;
         }
         tail= n;
-        size+= 1;
+        size++;
     }
 
     /** c: Add value v to the front of the list. <br>
